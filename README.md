@@ -1,8 +1,8 @@
 # matplotlib_GraphPad_style
 
-> A customed style similar to GraphPad.
+> Collections of customed styles for medical field.
 
-本项目旨在通过 Python 的 `matplotlib` 库，完美复刻 GraphPad Prism 风格的学术图表。无需手动调整繁琐的格式，只需引入相应的 `.mplstyle` 样式文件，即可一键生成符合高质量期刊出版要求的精美图表。
+本项目旨在通过 Python 的 `matplotlib` 库，复刻包含 **GraphPad Prism** 简约风格在内的学术图表样式。无需手动调整繁琐的格式，只需引入相应的 `.mplstyle` 样式文件，即可一键生成符合高质量期刊出版要求的精美图表。
 
 ## 🤖 AI friendly
 
@@ -20,10 +20,19 @@
 
 以下是当前仓库中提供的图表风格列表，点击链接可查看具体示例、效果图及使用说明：
 
+### GraphPad Prism
+
 | 样式名称 | 描述 | 快速查看 |
 | :--- | :--- | :--- |
-| **Column Chart GraphPad** | 经典的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/single_columns_chart/readme.md) |
-| **Column Chart GraphPad** | 单图多表的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/mutiple_columns_charts/readme.md) |
+| **Single Columns Chart** | 经典的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/single_columns_chart/readme.md) |
+| **Mutiple Columns Chart** | 单图多表的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/mutiple_columns_charts/readme.md) |
+| *(待添加)* | *(更多样式开发中...)* | |
+
+### DeepTools
+
+| 样式名称 | 描述 | 快速查看 |
+| :--- | :--- | :--- |
+| **Mutiple Columns Chart** | 单图多表基因组学聚合热图，带有标尺与色彩条图例。 | [👉 查看详情](./styles/mutiple_genomic_heatmaps/readme.md) |
 | *(待添加)* | *(更多样式开发中...)* | |
 
 ## 🛠️ 快速上手
