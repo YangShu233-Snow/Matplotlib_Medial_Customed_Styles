@@ -6,7 +6,7 @@ from typing import List
 from matplotlib.axes import Axes
 
 root_path = Path(__file__).parent
-style_file = root_path / './assets/column_chart_graphpad.mplstyle'
+style_file = root_path / './assets/single_columns_chart.mplstyle'
 plt.style.use(style_file)
 
 def caculate_star_y_position(mean: int, sem: int):

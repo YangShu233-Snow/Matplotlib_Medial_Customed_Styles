@@ -8,7 +8,7 @@
 
 ## ✨ 核心特性
 
-* **GraphPad 样式预设**：通过 `assets/column_chart_graphpad.mplstyle` 实现了字体、轴线粗细、刻度方向等底层样式的全局接管。
+* **GraphPad 样式预设**：通过 `assets/single_columns_chart.mplstyle` 实现了字体、轴线粗细、刻度方向等底层样式的全局接管。
 * **非对称误差线**：默认仅绘制向上的误差线（“T”字型），符合很多生物医学期刊的排版习惯。
 * **自动显著性星号定位**：内置 `caculate_star_y_position` 函数，根据柱子高度和误差值自动计算 `***` 的放置高度，避免重叠。
 
