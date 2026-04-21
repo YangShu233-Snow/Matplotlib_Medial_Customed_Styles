@@ -123,7 +123,7 @@ def main():
     # --- config ---
     ylabel = 'Value'
     title = 'Title'
-    img_name = 'example.png'
+    img_name = 'example'
 
     # 生成模拟数据
     np.random.seed(12) 
@@ -194,10 +194,11 @@ def main():
 
     save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)
-    save_path = save_dir / img_name
-
+    save_paths = [save_dir / f"{img_name}.png", save_dir / f"{img_name}.pdf"]
+    
     plt.tight_layout()
-    plt.savefig(save_path, bbox_inches='tight')
+    for save_path in save_paths:
+        plt.savefig(save_path, bbox_inches='tight')
 
 if __name__ == '__main__':
     main()
