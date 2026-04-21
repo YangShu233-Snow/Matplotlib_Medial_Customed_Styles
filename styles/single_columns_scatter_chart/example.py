@@ -10,24 +10,33 @@ root_path = Path(__file__).parent
 style_file = root_path / './assets/single_columns_scatter_chart.mplstyle'
 plt.style.use(style_file)
 
-
-
 def calculate_star_y_position(mean: float, sem: float, top_val: float):
     star_y_postion_1 = mean + sem + sem * 0.05
     star_y_postion_2 = top_val + 20
 
     return star_y_postion_1 if star_y_postion_1 > star_y_postion_2 else star_y_postion_2
 
-def draw_stars(ax: Axes, groups_id: List[int], stars: List[int], raw_data: List[np.ndarray], means: List[float], errs: List[float]):
-    for index, star in zip(groups_id, stars):
+def draw_stars(
+        ax: Axes, 
+        x_positions: List[float], 
+        stars_list: List[int], 
+        raw_data: List[np.ndarray], 
+        means: List[float], 
+        errs: List[float]
+    ):
+    for i, x_pos in enumerate(x_positions):
+        mean = means[i]
+        err = errs[i]
+        stars = stars_list[i]
+
         # 必须考虑到散点图的最大值，防止星号与散点重叠
-        group_max = np.max(raw_data[index])
-        error_max = means[index] + errs[index]
+        group_max = np.max(raw_data)
+        error_max = mean + err
         top_val = max(group_max, error_max)
         
-        star_y_position = calculate_star_y_position(top_val)
+        star_y_position = calculate_star_y_position(mean, err, top_val)
 
-        ax.text(index, star_y_position, '*' * star,
+        ax.text(x_pos, star_y_position, '*' * stars,
                 ha='center', va='bottom', fontsize=14)
 
 def generate_prism_colors(num_groups):
@@ -117,7 +126,7 @@ def main():
     img_name = 'example.png'
 
     # 生成模拟数据
-    np.random.seed(42) 
+    np.random.seed(12) 
     groups = ['Con', 'KO']
     
     # 模拟Con组数据 (均值约1200)
@@ -126,6 +135,10 @@ def main():
     data_ko = np.random.normal(3500, 400, 15)
     
     raw_data = [data_con, data_ko]
+
+    stars_mark = [
+        (1, 3)
+    ]
     
     # 根据原始数据计算均值和标准误 (SEM)
     means = [np.mean(d) for d in raw_data]
@@ -145,6 +158,7 @@ def main():
             capsize=5, error_kw={'elinewidth': 1.5, 'capthick': 1.5, 'zorder': 4})
     
     # 2. 绘制分布散点 (Scatter/Jitter)
+    
     for i, data in enumerate(raw_data):
         x_jittered = generate_jittered_x(data, r_x=0.03, r_y=80) + x_pos[i]
         ax.scatter(x_jittered, data, 
@@ -155,7 +169,19 @@ def main():
                    zorder=3)                 # 确保散点图层在柱子上方
 
     # 3. 绘制显著性星号，传入原始数据以计算最高点
-    draw_stars(ax, groups_id=[1], stars=[3], raw_data=raw_data, means=means, errs=errs)
+    stars_indexes = [star_mark[0] for star_mark in stars_mark]
+    stars = [star_mark[1] for star_mark in stars_mark]
+    stars_raw_data = [raw_data[index] for index in stars_indexes]
+    stars_means = [means[index] for index in stars_indexes]
+    stars_errs = [errs[index] for index in stars_indexes]
+    draw_stars(
+        ax,
+        [int(x_pos[i])],
+        stars,
+        stars_raw_data,
+        stars_means,
+        stars_errs
+    )
 
     # 4. 图表格式化设置
     ax.set_xlim(-0.6, len(groups) - 1 + 0.6)

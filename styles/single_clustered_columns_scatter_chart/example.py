@@ -17,13 +17,18 @@ def calculate_star_y_position(mean: float, sem: float, top_val: float):
 
     return star_y_postion_1 if star_y_postion_1 > star_y_postion_2 else star_y_postion_2
 
-
-def draw_stars(ax: Axes, index_list: List[int], x_positions: List[float], stars_list: List[int], raw_data: List[np.ndarray], means: List[float], errs: List[float]):
-    for index, i in enumerate(index_list):
-        x_pos = x_positions[i]
+def draw_stars(
+        ax: Axes, 
+        x_positions: List[float], 
+        stars_list: List[int], 
+        raw_data: List[np.ndarray], 
+        means: List[float], 
+        errs: List[float]
+    ):
+    for i, x_pos in enumerate(x_positions):
         mean = means[i]
         err = errs[i]
-        stars = stars_list[index]
+        stars = stars_list[i]
 
         # 必须考虑到散点图的最大值，防止星号与散点重叠
         group_max = np.max(raw_data)
@@ -34,6 +39,7 @@ def draw_stars(ax: Axes, index_list: List[int], x_positions: List[float], stars_
 
         ax.text(x_pos, star_y_position, '*' * stars,
                 ha='center', va='bottom', fontsize=14)
+
 
 def generate_prism_colors(num_groups):
     if num_groups == 1:
@@ -120,32 +126,28 @@ def main():
     # --- 配置区 ---
     ylabel = 'Value'
     title = 'Title'
-    img_name = 'example.png'
+    img_name = 'example'
 
     # --- 示例数据 ---
-    # 大类别（X轴的主刻度）
     categories = [
         ('Group A', ['CON', 'KO']), 
         ('Group B', ['CON', 'KO']), 
         ('Group C', ['CON', 'KO'])
         ]
     
+    np.random.seed(12)
     all_raw_data = [
         [np.random.normal(1200, 300, 15), np.random.normal(3500, 400, 15)],
         [np.random.normal(1500, 200, 20), np.random.normal(2200, 300, 20)],
         [np.random.normal(1100, 150, 15), np.random.normal(1050, 100, 15)]
     ]
 
-    # 将数据组织为 2D 数组（或者列表的列表）：形状为 (子组数量, 类别数量)
-    # 每一行代表一个子组(例如'Con')在所有类别上的值
     all_means = []
     all_errs = []
     for raw_data in all_raw_data:
         all_means.append([np.mean(data) for data in raw_data])
         all_errs.append([np.std(data, ddof=1) / np.sqrt(len(data)) for data in raw_data])
     
-    # 显著性星号标记: (类别索引, 子组索引, 星号数量)
-    # 例如：(0, 1, 3) 代表给第0个类别(Gene A)的第1个子组(KO)打上3个星号(***)
     stars_marks = [
         [(1, 3)],
         [(1, 2)], 
@@ -188,28 +190,27 @@ def main():
         for i, data in enumerate(raw_data):
             x_jittered = generate_jittered_x(data, r_x=0.02, r_y=30) + all_x_positions[i]
             ax.scatter(x_jittered, data, 
-                    color='white',            # 散点内部填充白色
-                    edgecolor='black',        # 散点黑色描边
-                    alpha=0.75,                # 散点透明度
-                    s=20,                     # 散点大小
-                    zorder=3)                 # 确保散点图层在柱子上方
+                    color='white',     
+                    edgecolor='black', 
+                    alpha=0.75,        
+                    s=20,              
+                    zorder=3)          
 
-        
-        target_index = []
-        curr_stars_mark = stars_marks[index]
-        stars_list = []
-        for item in curr_stars_mark:
-            target_index.append(item[0])
-            stars_list.append(item[1])
+        stars_mark = stars_marks[index]
+        stars_indexes = [star_mark[0] for star_mark in stars_mark]
+        stars = [star_mark[1] for star_mark in stars_mark]
+        x_positions = [all_x_positions[index] for index in stars_indexes]
+        stars_raw_data = [raw_data[index] for index in stars_indexes]
+        stars_means = [means[index] for index in stars_indexes]
+        stars_errs = [errs[index] for index in stars_indexes]
 
         draw_stars(
             ax,
-            target_index,
-            all_x_positions,
-            stars_list,
-            raw_data,
-            means,
-            errs
+            x_positions,
+            stars,
+            stars_raw_data,
+            stars_means,
+            stars_errs
         )
 
     # --- 格式化设置 ---
@@ -222,10 +223,11 @@ def main():
     # --- 保存图表 ---
     save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)
-    save_path = save_dir / img_name
+    save_paths = [save_dir / f"{img_name}.png", save_dir / f"{img_name}.pdf"]
 
     plt.tight_layout()
-    plt.savefig(save_path, bbox_inches='tight')
+    for save_path in save_paths:
+        plt.savefig(save_path, bbox_inches='tight')
 
 if __name__ == '__main__':
     main()
