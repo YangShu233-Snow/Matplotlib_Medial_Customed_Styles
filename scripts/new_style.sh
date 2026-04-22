@@ -33,4 +33,21 @@ touch "$TARGET_DIR/assets/$FOLDER_NAME.mplstyle"
 touch "$TARGET_DIR/example.py"
 touch "$TARGET_DIR/readme.md"
 
+cat >> "$TARGET_DIR/example.py" << EOF
+import matplotlib.pyplot as plt
+
+from pathlib import Path
+
+root_path = Path(__file__).parent
+# 修改为要求的样式文件路径
+style_file = root_path / './assets/$FOLDER_NAME.mplstyle'
+plt.style.use(style_file)
+
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()
+EOF
+
 echo "已在 $TARGET_DIR 中生成预定文件。"
