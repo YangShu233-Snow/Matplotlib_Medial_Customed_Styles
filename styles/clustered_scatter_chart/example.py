@@ -1,4 +1,3 @@
-from importlib import simple
 from typing import Any, Generator, Tuple
 
 from matplotlib.axes import Axes
@@ -36,7 +35,7 @@ def estimate_eps(
     # 向量投影法
     n_points = len(sort_distances)
     coords = np.vstack((np.arange(n_points), sort_distances)).T
-    
+
     # 取首尾两点连为向量 L，标准化为单位向量u
     first_pt = coords[0]
     last_pt = coords[-1]
@@ -122,7 +121,8 @@ def main():
 
     clustered_with_color = True
     clustered_with_convex_hull = True
-    
+    clustered_with_confidence_ellipse = True
+
     # 模拟数据
     np.random.seed(12)
     x_data = np.concatenate((np.random.normal(50, 10, 50), np.random.normal(500, 100, 50)))
@@ -134,18 +134,24 @@ def main():
 
     fig, ax = plt.subplots(figsize=(5, 5), dpi=300)
 
-    ax.scatter(x_data, y_data, c=labels, cmap=custom_cmap,
+    # 绘制基础散点图
+    scatter_color = labels if clustered_with_color else None
+    ax.scatter(x_data, y_data, c=scatter_color, cmap=custom_cmap,
                s=np.pi * r ** 2)
-    
-    for index, (hull, cluster_points) in enumerate(calculate_convex_hull(x_data, y_data, labels)):
-        for simplex in hull.simplices:
-            ax.plot(cluster_points[simplex, 0], cluster_points[simplex, 1], 
-                    color='grey', 
-                    linewidth=0.75, 
-                    alpha=0.75, 
-                    linestyle=':')
 
-        confidence_ellipse(cluster_points[:, 0], cluster_points[:, 1], ax, n_std=2.0)
+    # 绘制增强视觉元素
+    if clustered_with_convex_hull or clustered_with_confidence_ellipse:
+        for index, (hull, cluster_points) in enumerate(calculate_convex_hull(x_data, y_data, labels)):
+            if clustered_with_convex_hull:
+                for simplex in hull.simplices:
+                    ax.plot(cluster_points[simplex, 0], cluster_points[simplex, 1], 
+                            color='grey', 
+                            linewidth=0.75, 
+                            alpha=0.75, 
+                            linestyle=':')
+
+            if clustered_with_confidence_ellipse:
+                confidence_ellipse(cluster_points[:, 0], cluster_points[:, 1], ax, n_std=2.0)
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
@@ -154,7 +160,7 @@ def main():
     save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)
     save_paths = [save_dir / f"{img_name}.png", save_dir / f"{img_name}.pdf"]
-    
+
     plt.tight_layout()
     for save_path in save_paths:
         plt.savefig(save_path, bbox_inches='tight')
