@@ -14,7 +14,7 @@
          <img src="https://img.shields.io/badge/style-Matplotlib-blue?logo=python" alt="Matiplotlib">
       </a>
       <a href="https://github.com/YangShu233-Snow/Matplotlib_Medial_Customed_Styles/pulls">
-         <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="pull requests">
+         <img src="https://img.shields.io/badge/PRs-welcome-orange.svg" alt="pull requests">
       </a>
       <a href="./LICENSE">
          <img src="https://img.shields.io/github/license/YangShu233-Snow/Matplotlib_Medial_Customed_Styles" alt="License">
@@ -23,7 +23,7 @@
          <img src="https://img.shields.io/github/last-commit/YangShu233-Snow/Matplotlib_Medial_Customed_Styles" alt="Last Commit">
       </a>
       <a href="./llms.md">
-         <img src="https://img.shields.io/badge/AI-Friendly-brightgreen" alt="AI Friendly">
+         <img src="https://img.shields.io/badge/AI-Friendly-darkgreen" alt="AI Friendly">
       </a>
    </p>
 </div>
@@ -53,7 +53,7 @@
 | **Single Columns Chart** | 经典的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/single_columns_chart/readme.md) |
 | **Mutiple Columns Chart** | 经典的单图多表的双组/多组比较柱状图，支持非对称误差线和自动显著性标注。 | [👉 查看详情](./styles/mutiple_columns_charts/readme.md) |
 | **Single Columns Scatter Chart** | 经典的柱状散点图，支持数据散点、误差线和自动显著性标注。 | [👉 查看详情](./styles/single_columns_scatter_chart/readme.md) |
-| **Single Clustered Columns Scatter Chart** | 经典的分组（簇状）柱状散点图，支持数据散点、误差线和自动显著性标注。 | [👉 查看详情](./styles/single_clustered_columns_scatter_chart/readme.md) |
+| **Single Clustered Columns Scatter Chart** | 经典的分组柱状散点图，支持智能防重叠散点、误差线和自动显著性标注。 | [👉 查看详情](./styles/single_clustered_columns_scatter_chart/readme.md) |
 | **Clustered Scatter Chart** | 经典的聚类散点图，集成 DBSCAN 算法并支持自动参数估计。 | [👉 查看详情](./styles/clustered_scatter_chart/readme.md) |
 | *(待添加)* | *(更多样式开发中...)* | |
 
