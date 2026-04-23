@@ -29,8 +29,8 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/YangShu233-Snow/matplotlib_GraphPad_style"
-"Bug Tracker" = "https://github.com/YangShu233-Snow/matplotlib_GraphPad_style/issues"
+"Homepage" = "https://github.com/YangShu233-Snow/Matplotlib_Medial_Customed_Styles"
+"Bug Tracker" = "https://github.com/YangShu233-Snow/Matplotlib_Medial_Customed_Styles/issues"
 
 [project.optional-dependencies]
 dev = [
