@@ -8,6 +8,32 @@
 
 ## 提交前准备
 
+### 开发环境配置
+
+在开始贡献之前，请确保你已经配置好了开发环境。我们使用 `pyproject.toml` 来管理依赖，你可以通过以下命令安装包含测试工具在内的所有开发依赖：
+
+```bash
+git clone https://github.com/YangShu233-Snow/matplotlib_GraphPad_style
+cd matplotlib-medial-customed-style
+pip install -e ".[dev]"
+```
+
+### 运行自动化测试
+
+为了确保项目的稳定性，我们编写了自动化测试来验证样式的可用性。**在提交任何 Pull Request 之前，请务必在本地完整运行一遍测试。**
+
+在项目根目录下执行：
+
+```bash
+pytest
+```
+
+测试主要涵盖以下内容：
+1. **样式合法性测试**：确保所有的 `.mplstyle` 文件都能被 `matplotlib` 正确解析。
+2. **示例脚本运行测试**：模拟运行每个样式下的 `example.py`，确保脚本没有语法错误且能正常生成图表。
+
+如果你的代码修改导致测试失败（出现红色 F），请务必在修复后再提交。
+
 ### 提交类型
 
 本项目欢迎的提交类型包括：

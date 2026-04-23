@@ -42,18 +42,23 @@
 
 1. 克隆本仓库到本地：
    ```bash
-   git clone https://github.com/YangShu233-Snow/matplotlib_GraphPad_style
+   git clone https://github.com/YangShu233-Snow/Matplotlib_Medial_Customed_Styles
+   cd Matplotlib_Medial_Customed_Styles
    ```
 2. 安装环境
    ```bash
-   # 强烈建议使用虚拟环境，假设你已经在本地准备好了对应的 Conda 虚拟环境
+   # 强烈建议使用虚拟环境
    # Python>=3.9 均可，推荐版本为 3.12.3
-   conda activate Your_Enviroment
-   pip install -r requirements.txt
+
+   # 仅安装使用者依赖 (Production)
+   pip install .
+
+   # 安装开发者依赖 (Development/Testing)
+   pip install -e ".[dev]"
    ```
 3. 进入你感兴趣的样式目录，例如柱状图：
    ```bash
-   cd matplotlib_GraphPad_style/styles/column_chart_graphpad
+   cd styles/single_columns_chart
    ```
 4. 运行示例代码生成图表：
    ```bash
