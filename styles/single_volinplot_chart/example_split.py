@@ -59,6 +59,24 @@ def draw_split_violinplot(
     
     return handles
 
+def draw_sample_sizes(ax: Axes, data: List[List[np.ndarray]], x_positions: np.ndarray):
+    """在每个分离小提琴上方标注样本量 n=x/y"""
+    y_range = ax.get_ylim()[1] - ax.get_ylim()[0]
+    offset = y_range * 0.02
+    
+    for i, sub_data in enumerate(data):
+        n_low = len(sub_data[0])
+        n_high = len(sub_data[1])
+        top_val = max(np.max(sub_data[0]), np.max(sub_data[1]))
+        ax.text(
+            x_positions[i], 
+            top_val + offset, 
+            f'n={n_low}/{n_high}', 
+            ha='center', 
+            va='bottom',
+            fontsize=10
+        )
+
 def main():
     # --- config ---
     title = 'Treatment Comparison'
@@ -68,6 +86,7 @@ def main():
     points = 60
     widths = 0.7
     labels = ['Control', 'Treatment']
+    show_n = True  # 是否展示样本量
 
     np.random.seed(12)
     # split 模式数据格式: [ [group1, group2], [group1, group2], ... ]
@@ -90,8 +109,12 @@ def main():
     # 应用配置中的标签和标题
     ax.set_title(title)
     ax.set_ylabel(ylabel)
-    ax.set_xticks(np.arange(len(data)))
+    x_positions = np.arange(len(data))
+    ax.set_xticks(x_positions)
     ax.set_xticklabels([f'Sample {i+1}' for i in range(len(data))])
+
+    if show_n:
+        draw_sample_sizes(ax, data, x_positions)
 
     save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)

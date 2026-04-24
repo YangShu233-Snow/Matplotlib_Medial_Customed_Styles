@@ -43,6 +43,23 @@ def draw_violinplot(
         pc.set_linewidth(plt.rcParams['patch.linewidth'])
         pc.set_alpha(1)  # 移除默认透明度以匹配 GraphPad 风格
 
+def draw_sample_sizes(ax: Axes, data: List[np.ndarray], x_positions: np.ndarray):
+    """在每个小提琴上方标注样本量 n=xxx"""
+    y_range = ax.get_ylim()[1] - ax.get_ylim()[0]
+    offset = y_range * 0.02
+    
+    for i, d in enumerate(data):
+        n = len(d)
+        top_val = np.max(d)
+        ax.text(
+            x_positions[i], 
+            top_val + offset, 
+            f'n={n}', 
+            ha='center', 
+            va='bottom',
+            fontsize=10
+        )
+
 def main():
     # --- config ---
     title = 'Standard Violin Plot'
@@ -51,6 +68,7 @@ def main():
 
     points = 60
     widths = 0.7
+    show_n = True  # 是否展示样本量
 
     np.random.seed(12)
     data = [
@@ -71,8 +89,12 @@ def main():
     # 应用配置中的标签和标题
     ax.set_title(title)
     ax.set_ylabel(ylabel)
-    ax.set_xticks(np.arange(len(data)))
+    x_positions = np.arange(len(data))
+    ax.set_xticks(x_positions)
     ax.set_xticklabels([f'Sample {i+1}' for i in range(len(data))])
+
+    if show_n:
+        draw_sample_sizes(ax, data, x_positions)
 
     save_dir = root_path / Path('./img')
     save_dir.mkdir(parents=True, exist_ok=True)

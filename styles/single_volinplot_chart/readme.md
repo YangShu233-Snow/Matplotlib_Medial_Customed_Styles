@@ -18,6 +18,7 @@
 *   **双重变体支持**：
     *   `example.py`: 快速生成经典的单色小提琴图。
     *   `example_split.py`: 生成基于颜色循环（蓝色与橙色对比）的分离式小提琴图，并自动生成图例。
+*   **样本量自动标注**：内置 `draw_sample_sizes` 函数，可自动在每个小提琴最上方标注样本数量（标准模式为 $n=xxx$，分离模式为 $n=x/y$）。
 *   **优化核密度估计 (KDE)**：内置 Scott MISE 算法优化带宽选择，使小提琴图在不同数据量下都能呈现出平滑且真实的轮廓。
 *   **移除冗余元素**：默认隐藏了箱体中心线和末端横线，仅保留轮廓（可根据需要开启），使图表视觉焦点更加集中。
 
@@ -38,8 +39,12 @@ python example_split.py
 ## 🛠️ 如何替换为你自己的数据？
 
 ### 修改标准模式 (`example.py`)
-在 `main` 函数中修改数据列表：
+在 `main` 函数中修改数据列表及配置：
 ```python
+# --- config ---
+show_n = True  # 是否展示样本量 n=xxx
+
+# --- data ---
 data = [
     np.random.normal(200, 80, 200),
     np.random.normal(800, 500, 200),
@@ -50,6 +55,9 @@ data = [
 ### 修改分离模式 (`example_split.py`)
 分离模式要求数据格式为成对列表：
 ```python
+# --- config ---
+show_n = True  # 是否展示样本量 n=x/y
+
 # 每个元素代表一个样本点，包含 [组1数据, 组2数据]
 data = [
     [np.random.normal(200, 50, 100), np.random.normal(250, 60, 100)],
