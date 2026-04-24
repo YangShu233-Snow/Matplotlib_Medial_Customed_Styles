@@ -2,6 +2,9 @@
 font.family : sans-serif
 font.sans-serif : Arial, Helvetica, DejaVu Sans
 
+# 标题间距
+axes.titlepad : 10
+
 # 坐标轴和标题字体粗细
 axes.labelweight : bold
 axes.titleweight : bold
