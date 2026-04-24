@@ -5,11 +5,15 @@
 ## 📊 效果预览
 
 ### 标准叠加模式 (Standard)
+
 适用于展示单组数据在不同样本间的分布及统计量。
+
 ![](img/example.png)
 
 ### 分离叠加模式 (Split)
+
 适用于直观对比两组相关样本（如 Control vs Treatment），内部箱线图会自动偏移对齐到对应的半边小提琴图中。
+
 ![](img/example_split.png)
 
 ## ✨ 核心特性

@@ -44,7 +44,7 @@ def draw_box_violinplot(ax: Axes, data: List[np.ndarray], points: int, v_widths:
     ax.boxplot(
         data, positions=x_pos, widths=b_widths, showfliers=False,
         patch_artist=plt.rcParams['boxplot.patchartist'],
-        boxprops=dict(facecolor='black')
+        boxprops=dict(facecolor="#00000000")
     )
 
 def main():

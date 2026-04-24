@@ -42,8 +42,8 @@ def draw_split_box_violinplot(
         )
         for pc in parts['bodies']:
             pc.set_facecolor(color)
-            pc.set_edgecolor('black')
-            pc.set_linewidth(1.5)
+            pc.set_edgecolor(plt.rcParams['patch.edgecolor'])
+            pc.set_linewidth(plt.rcParams['patch.linewidth'])
             pc.set_alpha(1)
         
         # 为了与半边小提琴对齐，对箱线图的中心位置进行轻微偏移
@@ -54,7 +54,7 @@ def draw_split_box_violinplot(
         ax.boxplot(
             group, positions=box_pos, widths=b_widths, showfliers=False, 
             patch_artist=plt.rcParams['boxplot.patchartist'], 
-            boxprops=dict(facecolor='black')
+            boxprops=dict(facecolor='#00000000')
         )
         
         # 记录图例信息

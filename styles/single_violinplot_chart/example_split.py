@@ -49,8 +49,8 @@ def draw_split_violinplot(
         )
         for pc in parts['bodies']:
             pc.set_facecolor(color)
-            pc.set_edgecolor('black')
-            pc.set_linewidth(1.5)
+            pc.set_edgecolor(plt.rcParams['patch.edgecolor'])
+            pc.set_linewidth(plt.rcParams['patch.linewidth'])
             pc.set_alpha(1)
         
         # 为图例创建 Patch
