@@ -4,6 +4,11 @@
 
 This repository, **Matplotlib_Medial_Customed_Style**, is a collection of `matplotlib` styles designed to mimic GraphPad Prism and other professional scientific plotting tools (e.g., DeepTools) for publication-ready medical charts.
 
+## 🤖 AI Agent Constraints (CRITICAL)
+If you are an AI Agent participating in the development of this project, you **MUST**:
+1. Strictly adhere to all coding conventions, style decoupling rules, and the PR guidelines defined in this repository.
+2. Read the `.aiignore` file and translate its contents into your specific ignore format (e.g., `.cursorignore`, `.geminiignore`, etc.) to ensure you do not process or alter irrelevant files (such as generated images or cache directories).
+
 ## 📁 Project Structure
 - `/styles/<style_name>/`: Modular directory for each chart type.
     - `assets/*.mplstyle`: Core style definitions (Mandatory: Keep logic here, not in Python).
