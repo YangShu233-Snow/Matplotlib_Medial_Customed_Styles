@@ -10,6 +10,7 @@
 
 * **GraphPad 样式预设**：通过 `assets/single_boxplot_chart.mplstyle` 实现了字体、轴线粗细、刻度方向、离群值点样式以及均值线样式（红色虚线）的全局接管。
 * **统计信息展示**：默认同时展示中位数（橙色实线）和均值（红色虚线），符合学术图表对数据集中趋势的全面展示要求。
+* **样本量自动标注**：内置 `draw_sample_sizes` 函数，可自动在每个箱体最上方标注样本数量 ($n=xxx$)，非常适合在数据量差异较大的实验组间展示。
 * **高度可定制**：所有的核心线条宽度、颜色和标记点样式都已在样式文件中定义，方便一键应用。
 
 ## 🚀 快速运行
@@ -34,6 +35,7 @@ img_name = 'example'# 导出的文件名
 
 show_mean = True    # 是否显示均值线
 is_notch = False    # 是否启用箱型切口(Notch)样式
+show_n = True       # 是否展示样本量 n=xxx
 
 # --- 模拟数据 ---
 # 替换为你的真实数据列表
@@ -45,5 +47,3 @@ data = [
 
 labels = ['Sample_1', 'Sample_2', 'Sample_3'] # X轴的分组标签
 ```
-
-注意：由于 Matplotlib 的 rcParams 限制，箱体的填充色 (`facecolor`) 目前需要在 `example.py` 的 `ax.boxplot` 调用中通过 `boxprops` 手动指定。

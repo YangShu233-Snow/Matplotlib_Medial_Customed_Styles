@@ -102,6 +102,15 @@
 
 如果你想为本项目提出 Pull Request，可以参照 [贡献指南](CONTRIBUTING.md)
 
+## 🙇 致谢
+
+非常感谢以下**项目/资料**，在开发**MMCS**时候，我从中得到了许多帮助：
+
+- [From Data to viz](https://www.data-to-viz.com/)
+- [Matplotlib](https://matplotlib.org/)
+- [Graphpad](https://www.graphpad.com/)
+- [DeepTools](https://github.com/deeptools/deepTools)
+
 ## 📄 License
 
 MIT License
