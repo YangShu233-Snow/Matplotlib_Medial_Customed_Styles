@@ -23,7 +23,7 @@ def generate_prism_colors(num_groups):
     if num_groups == 1:
         return ['black']
 
-    grays = np.linspace(0, 0.8, num_groups)
+    grays = np.linspace(0.1, 0.8, num_groups)
     return [str(g) for g in grays]
 
 def main():
@@ -56,8 +56,7 @@ def main():
 
         # 图表柱子的样式
         axs[index].bar(x_pos, means, yerr=asymmetric_errs, width=0.6,
-                color=colors, edgecolor='black', linewidth=2,
-                capsize=5, error_kw={'elinewidth': 0.8, 'capthick': 0.8})
+                color=colors)
         
         draw_stars(axs[index], groups_id=groups_id, stars=stars, means=means, errs=errs)
 

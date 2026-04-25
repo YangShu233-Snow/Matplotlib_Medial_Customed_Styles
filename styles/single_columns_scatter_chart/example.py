@@ -158,8 +158,7 @@ def main():
 
     # 1. 绘制柱状图底色 (设置透明度以便看清散点)
     ax.bar(x_pos, means, yerr=asymmetric_errs, width=0.6,
-            color=colors, edgecolor='black', linewidth=2,
-            capsize=5, error_kw={'elinewidth': 1.5, 'capthick': 1.5, 'zorder': 4})
+            color=colors, error_kw={'zorder': 4})
     
     # 2. 绘制分布散点 (Scatter/Jitter)
     for i, data in enumerate(raw_data):

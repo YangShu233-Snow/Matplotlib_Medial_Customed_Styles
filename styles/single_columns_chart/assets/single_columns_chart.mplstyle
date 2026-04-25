@@ -23,3 +23,13 @@ xtick.labelsize : 12
 ytick.labelsize : 12
 axes.labelsize : 14
 axes.titlesize : 16
+
+# 柱状图线宽及误差线
+patch.linewidth: 2.0
+patch.edgecolor: black
+errorbar.capsize: 4
+
+
+# 误差线线宽
+lines.linewidth: 0.8
+
