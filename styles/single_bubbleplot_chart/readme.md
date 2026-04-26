@@ -31,27 +31,35 @@ python example.py
 
 ```python
 # --- config ---
-img_name = 'example'            # 输出文件名
-title = 'Title'                 # 图表标题
-legend_label = 'legend'         # 图例标题
-x_label  = 'Value'              # X 轴标签
+img_name = 'example'
+title = 'Title'
+legend_label = 'legend'
+x_label  = 'Value'
 
 color_highlight = True          # True: 彩色映射; False: 统一灰色
-p_value_ticks = True            # True: 显示标准 P 值阈值; False: colorbar 刻度均匀等分
+p_value_ticks = True            # True: colorbar 显示 P 值常用阈值 (0.001~0.5)
+                                # False: colorbar 刻度在数据范围内均匀等分
 
-# --- 气泡大小 ---
-# 将 bubble_size_data（原始数值）线性映射到 min_bubble_size ~ max_bubble_size（散点的 point 面积）
+# --- 气泡映射参数 ---
+# bubble_size_data 中的数值越大 → 气泡越大; 数值越小 → 气泡越小
+# 以下两个参数控制气泡在画布上实际占据的最小/最大面积 (point²)
 min_bubble_size = 20
 max_bubble_size = 100
 
-# 图例会显示 percentile 对应分位数的气泡大小（此处为最小值/中位数/最大值三档）
+# 图例展示哪几个分位数的气泡 (此处为最小值/中位数/最大值三档)
 percentile = [0, 0.50, 1]
 
-# --- 模拟数据 ---
-np.random.seed(12)
-categories = [f'Sample_{chr(index)}' for index in range(ord('A'), ord('N'))]   # Y 轴标签列表
-x_values = np.random.normal(20, 10, len(categories))                            # X 轴数值
+# --- 数据 (替换为你自己的数据即可) ---
+categories = [str...]  # Y 轴标签
 
-bubble_size_data = np.random.normal(50, 20, len(categories))                    # 控制气泡大小
-color_data = np.random.randint(5, 100, len(categories)) / 1000                  # 控制气泡颜色
+x_values = np.ndarray[...]   # 每个气泡的 X 坐标 (如富集分数)
+
+# 决定气泡大小的变量
+# 数值越大 → 气泡越
+bubble_size_data = np.ndarray[...]
+
+# 决定气泡颜色的变量
+# 数值映射到红→紫色谱
+# 图例显示对应 P_value
+color_data = np.ndarray[...]
 ```
