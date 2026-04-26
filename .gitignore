@@ -6,3 +6,6 @@ __pycache__/
 GEMINI.md
 .geminiignore
 .gemini
+
+# vscode
+.vscode

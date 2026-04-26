@@ -42,5 +42,3 @@ y_data = x_data + np.random.uniform(-2, 4, size=50)
 # 散点半径计算因子 (用于计算散点面积 s=np.pi * r ** 2)
 r = 2.0
 ```
-
-如果需要修改颜色、拟合线宽、散点形状或其他图表视觉效果，推荐编辑 `assets/single_linear_regression_scatter_chart.mplstyle` 文件。
