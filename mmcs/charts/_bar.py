@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.axes import Axes
 
+from mmcs._utils._annotation import jitter
+
 
 def render(
     ax: Axes,
@@ -18,6 +20,8 @@ def render(
     width: float = 0.6,
     stars: Optional[Sequence[int]] = None,
     edge: bool = True,
+    scatter_data: Optional[Sequence[np.ndarray]] = None,
+    scatter_r: float = 1.5,
 ) -> Axes:
     x_pos = np.arange(len(data))
     means = np.asarray(data)
@@ -32,8 +36,24 @@ def render(
     edgecolor = plt.rcParams.get("patch.edgecolor") if edge else None
     ax.bar(x_pos, means, yerr=yerr, width=width, color=colors, edgecolor=edgecolor)
 
+    if scatter_data is not None:
+        fig_w = ax.figure.get_figwidth() if hasattr(ax.figure, "get_figwidth") else 10
+        fig_h = ax.figure.get_figheight() if hasattr(ax.figure, "get_figheight") else 6
+        n_bars = len(data)
+        all_max = max(means)
+
+        for i, raw in enumerate(scatter_data):
+            raw = np.asarray(raw).ravel()
+            r_x = n_bars / fig_w * scatter_r / 36
+            r_y = all_max / fig_h * scatter_r / 36
+            x_jit = jitter(raw, r_x, r_y) + x_pos[i]
+
+            ax.scatter(x_jit, raw, color="white", edgecolor="black",
+                       alpha=0.7, s=np.pi * scatter_r ** 2)
+
     if stars is not None:
-        _draw_stars_simple(ax, means, errors or [0] * len(data), stars)
+        _draw_stars_simple(ax, means, errors or [0] * len(data), stars,
+                           raw_max=_max_of_scatter(scatter_data) if scatter_data else None)
 
     if groups is not None:
         ax.set_xticks(x_pos)
@@ -48,7 +68,14 @@ def _draw_stars_simple(
     means: np.ndarray,
     errs: Sequence[float],
     stars: Sequence[int],
+    raw_max: float | None = None,
 ) -> None:
     for idx, n_stars in enumerate(stars):
-        y_pos = means[idx] + errs[idx] + errs[idx] * 0.05
-        ax.text(idx, y_pos, "*" * n_stars, ha="center", va="bottom")
+        top = means[idx] + errs[idx] + errs[idx] * 0.05
+        if raw_max is not None:
+            top = max(top, raw_max + 20)
+        ax.text(idx, top, "*" * n_stars, ha="center", va="bottom", fontsize=14)
+
+
+def _max_of_scatter(scatter_data: Sequence[np.ndarray]) -> float:
+    return max(float(np.max(d)) for d in scatter_data)
