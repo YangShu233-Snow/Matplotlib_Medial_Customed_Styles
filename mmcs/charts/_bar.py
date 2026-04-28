@@ -21,7 +21,7 @@ def render(
     stars: Optional[Sequence[int]] = None,
     edge: bool = True,
     scatter_data: Optional[Sequence[np.ndarray]] = None,
-    scatter_r: float = 1.5,
+    scatter_r: float = 2.0,
 ) -> Axes:
     x_pos = np.arange(len(data))
     means = np.asarray(data)
@@ -49,7 +49,8 @@ def render(
             x_jit = jitter(raw, r_x, r_y) + x_pos[i]
 
             ax.scatter(x_jit, raw, color="white", edgecolor="black",
-                       alpha=0.7, s=np.pi * scatter_r ** 2)
+                       alpha=0.7, linewidths=plt.rcParams.get("lines.linewidth", 1.0),
+                       s=np.pi * scatter_r ** 2)
 
     if stars is not None:
         _draw_stars_simple(ax, means, errors or [0] * len(data), stars,

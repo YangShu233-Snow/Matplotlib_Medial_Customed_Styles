@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Sequence
 
+import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.axes import Axes
 
@@ -15,6 +16,7 @@ def render(
     bar_width: float = 0.3,
     scatter_r: float = 1.5,
     comparisons: Sequence[tuple[int, int, int, int]] | None = None,
+    fraction_length: int = 20,
 ) -> Axes:
     n_categories = len(groups)
     all_means: list[list[float]] = []
@@ -57,11 +59,12 @@ def render(
                    align="center", color=colors[i])
 
         for i, d in enumerate(raw):
-            r_x = total / fig_w * scatter_r / 36
-            r_y = max(flat) / fig_h * scatter_r / 36 if max(flat) != 0 else scatter_r / 36
+            r_x = total / fig_w * scatter_r / 54
+            r_y = max(flat) / fig_h * scatter_r / 54 if max(flat) != 0 else scatter_r / 72
             x_jit = jitter(d, r_x, r_y) + x_positions[i]
             ax.scatter(x_jit, d, color="white", edgecolor="black",
-                       alpha=0.75, s=np.pi * scatter_r ** 2)
+                       alpha=0.75, linewidths=plt.rcParams.get("lines.linewidth", 1.0),
+                       s=np.pi * scatter_r ** 2)
 
         group_idx += 1
 
@@ -73,43 +76,55 @@ def render(
     ax.set_xticklabels(all_names, minor=True, rotation=45)
 
     if comparisons:
-        cat_ranges: list[tuple[int, int]] = []
+        cat_groups: dict[int, list[tuple[int, int, int]]] = {}
+        for cat_idx, sub_a, sub_b, n_stars in comparisons:
+            cat_groups.setdefault(cat_idx, []).append((sub_a, sub_b, n_stars))
+
         start = 0
-        for ms in all_means:
-            cat_ranges.append((start, start + len(ms) - 1))
-            start += len(ms)
-        _draw_comparisons(ax, comparisons, all_bar_pos, all_raw, all_means, all_errs, cat_ranges)
+        for cat_idx, cat_comps in cat_groups.items():
+            n_sub = len(all_means[cat_idx])
+            _draw_category_comparisons(
+                ax, cat_comps, all_bar_pos[start:start + n_sub],
+                all_raw[cat_idx], all_means[cat_idx], all_errs[cat_idx],
+                fraction_length,
+            )
+            start += n_sub
 
     return ax
 
 
-def _draw_comparisons(
+def _draw_category_comparisons(
     ax: Axes,
-    comparisons: Sequence[tuple[int, int, int, int]],
+    comps: list[tuple[int, int, int]],
     bar_pos: list[float],
-    all_raw: list[list[np.ndarray]],
-    all_means: list[list[float]],
-    all_errs: list[list[float]],
-    cat_ranges: list[tuple[int, int]],
+    raw_data: list[np.ndarray],
+    means: list[float],
+    errs: list[float],
+    fraction_length: int,
 ) -> None:
+    max_y_line = 0.0
     max_y_star = 0.0
-    min_gap = 400
+    min_gap = 20 * fraction_length
 
-    for cat_idx, sub_a, sub_b, n_stars in comparisons:
-        start, end = cat_ranges[cat_idx]
-        x1, x2 = bar_pos[start + sub_a], bar_pos[start + sub_b]
-        d_a = all_raw[cat_idx][sub_a]
-        d_b = all_raw[cat_idx][sub_b]
-        m_a, e_a = all_means[cat_idx][sub_a], all_errs[cat_idx][sub_a]
-        m_b, e_b = all_means[cat_idx][sub_b], all_errs[cat_idx][sub_b]
+    for sub_a, sub_b, n_stars in comps:
+        x1, x2 = bar_pos[sub_a], bar_pos[sub_b]
+        d_a, d_b = raw_data[sub_a], raw_data[sub_b]
+        m_a, e_a = means[sub_a], errs[sub_a]
+        m_b, e_b = means[sub_b], errs[sub_b]
 
         top = max(float(np.max(d_a)), m_a + e_a,
                   float(np.max(d_b)), m_b + e_b)
 
-        line_y = top if top - max_y_star > min_gap else max_y_star + min_gap
+        if top - max_y_star > min_gap:
+            max_y_line = top
+        else:
+            max_y_line += min_gap
+            top = max_y_line
+
+        line_y = top + fraction_length * 5
         max_y_star = max(line_y, max_y_star)
 
         ax.plot([x1, x1, x2, x2],
-                [line_y - 20, line_y, line_y, line_y - 20],
+                [line_y - fraction_length, line_y, line_y, line_y - fraction_length],
                 c="black", linewidth=1.0)
         ax.text((x1 + x2) / 2, line_y, "*" * n_stars, ha="center", va="bottom")
