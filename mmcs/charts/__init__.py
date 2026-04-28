@@ -9,10 +9,11 @@ from mmcs.charts import _heatmap_aggregate as heatmap_aggregate
 from mmcs.charts import _histogram as histogram
 from mmcs.charts import _regression as regression
 from mmcs.charts import _scatter as scatter
+from mmcs.charts import _scatter_clustered as scatter_clustered
 from mmcs.charts import _violin as violin
 
 __all__ = [
     "bar", "boxplot", "boxviolin", "bubble", "clustered_columns",
     "density", "heatmap", "heatmap_aggregate",
-    "histogram", "regression", "scatter", "violin",
+    "histogram", "regression", "scatter", "scatter_clustered", "violin",
 ]

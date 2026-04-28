@@ -20,6 +20,7 @@ from mmcs._quick_api import (
     histogram_chart,
     regression_chart,
     scatter_chart,
+    scatter_clustered_chart,
     violin_chart,
 )
 from mmcs._registry import Style, get_style, list_styles, list_styles_for
@@ -39,6 +40,7 @@ __all__ = [
     "histogram_chart",
     "regression_chart",
     "scatter_chart",
+    "scatter_clustered_chart",
     "violin_chart",
     "save_figure",
     "list_styles",

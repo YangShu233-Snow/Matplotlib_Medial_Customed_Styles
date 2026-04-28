@@ -21,6 +21,7 @@ from mmcs.charts import (
     histogram,
     regression,
     scatter,
+    scatter_clustered,
     violin,
 )
 
@@ -125,6 +126,42 @@ def scatter_chart(
     fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
     scatter.render(ax, x, y, c=c, s=s, cmap=cmap, **kwargs)
     _label(ax, xlabel=xlabel, ylabel=ylabel, title=title)
+    _handle_save(fig, save_as)
+    return ChartResult(fig, stats={"n_points": len(np.asarray(x))})
+
+
+def scatter_clustered_chart(
+    x: Any,
+    y: Any,
+    *,
+    style: Union[str, Style] = "graphpad_prism",
+    save_as: Optional[Union[str, Path]] = None,
+    figsize: Optional[tuple[float, float]] = None,
+    dpi: int = 300,
+    color_by_cluster: bool = True,
+    show_convex_hull: bool = True,
+    show_confidence_ellipse: bool = True,
+    xlabel: Optional[str] = None,
+    ylabel: Optional[str] = None,
+    title: Optional[str] = None,
+) -> ChartResult:
+    ctxt = StyleContext(style)
+    ctxt.apply(plt.rcParams, "scatter")
+    if figsize is None:
+        figsize = (5, 5)
+    fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
+
+    scatter_clustered.render(
+        ax, x, y,
+        color_by_cluster=color_by_cluster,
+        show_convex_hull=show_convex_hull,
+        show_confidence_ellipse=show_confidence_ellipse,
+        xlabel=xlabel, ylabel=ylabel,
+    )
+
+    if title:
+        ax.set_title(title)
+
     _handle_save(fig, save_as)
     return ChartResult(fig, stats={"n_points": len(np.asarray(x))})
 
