@@ -37,5 +37,5 @@ result = mmcs.profile.bar_scatter(
 ## 相关链接
 
 - 同类别预设: [单列柱状图](single-column.md)
-- Quick API: `mmcs.bar_chart()`
-- 底层渲染器: `mmcs.charts.bar.render()`
+- Quick API: [`mmcs.bar_chart()`](../api/quick-api.md#mmcs._quick_api._bar.bar_chart)
+- 底层渲染器: [`mmcs.charts.bar.render()`](../api/renderers.md#mmcs.charts._bar.render)

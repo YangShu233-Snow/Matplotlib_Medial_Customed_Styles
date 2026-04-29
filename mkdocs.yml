@@ -27,6 +27,12 @@ nav:
       - 散点与相关性: profile/scatter.md
       - 直方图与密度图: profile/histogram-density.md
       - 气泡图与热图: profile/bubble-heatmap.md
+  - API Reference:
+      - Core: api/core.md
+      - Renderers: api/renderers.md
+      - Quick API: api/quick-api.md
+      - Profile: api/profile.md
+      - Utilities: api/utils.md
 
 plugins:
   - search
@@ -52,13 +58,27 @@ plugins:
             "散点与相关性": Scatter & Correlation
             "直方图与密度图": Histogram & Density
             "气泡图与热图": Bubble & Heatmap
+            "API Reference": API Reference
+            Core: Core
+            Renderers: Renderers
+            "Quick API": Quick API
+            Profile: Profile
+            Utilities: Utilities
+            "API Reference": API Reference
+            Core: Core
+            Renderers: Renderers
+            "Quick API": Quick API
+            Profile: Profile
+            Utilities: Utilities
   - mkdocstrings:
       handlers:
         python:
           paths: [mmcs]
           options:
-            show_source: true
+            show_source: false
             show_signature_annotations: true
+            show_root_heading: false
+            heading_level: 4
             docstring_style: google
 
 extra_css:

@@ -28,6 +28,26 @@ def scatter_chart(
     title: Optional[str] = None,
     **kwargs: Any,
 ) -> ChartResult:
+    """Create a simple scatter plot.
+
+    Args:
+        x: X-coordinates.
+        y: Y-coordinates.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        c: Marker color(s).
+        s: Marker area.
+        cmap: Colormap for color-mapped plots.
+        xlabel: X-axis label.
+        ylabel: Y-axis label.
+        title: Chart title.
+        **kwargs: Passed through to the renderer.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "scatter")
     if figsize is None:
@@ -54,6 +74,28 @@ def scatter_clustered_chart(
     ylabel: Optional[str] = None,
     title: Optional[str] = None,
 ) -> ChartResult:
+    """Create a DBSCAN-clustered scatter plot.
+
+    Automatically estimates clusters and optionally draws convex
+    hulls and confidence ellipses.
+
+    Args:
+        x: X-coordinates.
+        y: Y-coordinates.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        color_by_cluster: Color points by cluster label.
+        show_convex_hull: Draw convex hull boundaries.
+        show_confidence_ellipse: Draw 2-sigma confidence ellipses.
+        xlabel: X-axis label.
+        ylabel: Y-axis label.
+        title: Chart title.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "scatter")
     if figsize is None:

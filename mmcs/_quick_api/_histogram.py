@@ -25,6 +25,25 @@ def histogram_chart(
     ylabel: Optional[str] = None,
     title: Optional[str] = None,
 ) -> ChartResult:
+    """Create a histogram.
+
+    Uses the Freedman-Diaconis rule for automatic binning by default.
+
+    Args:
+        data: Input data values.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        bins: Explicit number of bins. Auto-computed if ``None``.
+        bins_method: Bin counting rule.
+        xlabel: X-axis label.
+        ylabel: Y-axis label.
+        title: Chart title.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "histogram")
     if figsize is None:

@@ -24,6 +24,25 @@ def regression_chart(
     ylabel: str = "Y Value",
     title: Optional[str] = None,
 ) -> ChartResult:
+    """Create a scatter plot with linear regression.
+
+    Displays the regression line, R-squared, and p-value in the
+    top-left corner.
+
+    Args:
+        x: X-coordinates.
+        y: Y-coordinates.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        xlabel: X-axis label.
+        ylabel: Y-axis label.
+        title: Chart title.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "regression")
     if figsize is None:

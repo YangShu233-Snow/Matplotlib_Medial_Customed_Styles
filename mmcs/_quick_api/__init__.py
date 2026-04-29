@@ -14,6 +14,18 @@ class ChartResult:
         self.stats = stats or {}
 
     def to_base64(self, fmt: str = "png", dpi: int = 300) -> str:
+        """Serialize the figure to a base64-encoded string.
+
+        Useful for web APIs or embedding in notebooks without
+        writing to disk.
+
+        Args:
+            fmt: Image format (``"png"`` or ``"pdf"``).
+            dpi: Output resolution.
+
+        Returns:
+            A base64-encoded string of the figure image.
+        """
         buf = io.BytesIO()
         self.fig.savefig(buf, format=fmt, dpi=dpi, bbox_inches="tight")
         buf.seek(0)

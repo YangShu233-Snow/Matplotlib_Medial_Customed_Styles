@@ -31,6 +31,33 @@ def box_violin_chart(
     title: Optional[str] = None,
     ylabel: Optional[str] = None,
 ) -> ChartResult:
+    """Create an overlaid box + violin plot.
+
+    High-level API for combined box and violin plots, with optional
+    split mode for paired comparisons.
+
+    Args:
+        data: One array per group. For split mode, a list of
+            ``(low, high)`` tuples.
+        groups: X-axis labels.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        split: If True, draw split box+violin.
+        split_labels: Legend labels for split halves.
+        bandwidth: KDE bandwidth rule.
+        v_widths: Violin width fraction.
+        b_widths: Box width fraction.
+        points: Number of KDE grid points.
+        cut: KDE grid extension factor.
+        show_n: Annotate sample sizes.
+        title: Chart title.
+        ylabel: Y-axis label.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "box_violin")
     if figsize is None:

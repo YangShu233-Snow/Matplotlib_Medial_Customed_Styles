@@ -27,6 +27,28 @@ def box_chart(
     ylabel: Optional[str] = None,
     **kwargs: Any,
 ) -> ChartResult:
+    """Create a box plot.
+
+    High-level API for box plots with optional sample size annotation.
+
+    Args:
+        data: One array per group, or a DataFrame.
+        x: DataFrame column name for group labels.
+        y: DataFrame column name for values.
+        groups: X-axis labels for each box.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        show_n: Annotate ``n=<count>`` above each box.
+        patch_facecolor: Box fill color.
+        title: Chart title.
+        ylabel: Y-axis label.
+        **kwargs: Passed through to the renderer.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     arr, grp = _resolve_frame(data, x, y)
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "boxplot")

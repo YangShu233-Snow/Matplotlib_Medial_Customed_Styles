@@ -28,6 +28,29 @@ def bubble_chart(
     p_value_ticks: bool = True,
     title: Optional[str] = None,
 ) -> ChartResult:
+    """Create a bubble plot.
+
+    Multi-dimensional visualization with bubble size and color encoding.
+
+    Args:
+        categories: Y-axis category labels.
+        x_values: X-axis positions (e.g. enrichment scores).
+        bubble_sizes: Bubble radii (e.g. -log10 p-value).
+        color_values: Bubble color encoding (e.g. fold change).
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        xlabel: X-axis label.
+        color_highlight: If True, sort by color value and use
+            multi-color colormap.
+        legend_label: Title for bubble size legend.
+        p_value_ticks: Use p-value thresholds as color bar ticks.
+        title: Chart title.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "bubble")
     if figsize is None:

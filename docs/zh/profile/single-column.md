@@ -91,5 +91,5 @@ result = bar_chart(
 ## 相关链接
 
 - 同类别预设: [带散点的柱状图](bar-scatter.md)
-- Quick API: `mmcs.bar_chart()`
-- 底层渲染器: `mmcs.charts.bar.render()`
+- Quick API: [`mmcs.bar_chart()`](../api/quick-api.md#mmcs._quick_api._bar.bar_chart)
+- 底层渲染器: [`mmcs.charts.bar.render()`](../api/renderers.md#mmcs.charts._bar.render)

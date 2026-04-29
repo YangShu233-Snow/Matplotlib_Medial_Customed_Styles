@@ -85,5 +85,5 @@ result = mmcs.profile.heatmap(
 
 ## See Also
 
-- Quick API: `mmcs.bubble_chart()` · `mmcs.heatmap_chart()`
-- Renderers: `mmcs.charts.bubble.render()` · `mmcs.charts.heatmap.render()`
+- Quick API: [`mmcs.bubble_chart()`](../api/quick-api.md#mmcs._quick_api._bubble.bubble_chart) · [`mmcs.heatmap_chart()`](../api/quick-api.md#mmcs._quick_api._heatmap.heatmap_chart)
+- Renderers: [`mmcs.charts.bubble.render()`](../api/renderers.md#mmcs.charts._bubble.render) · [`mmcs.charts.heatmap.render()`](../api/renderers.md#mmcs.charts._heatmap.render)

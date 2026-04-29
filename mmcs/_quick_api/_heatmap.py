@@ -27,6 +27,27 @@ def heatmap_chart(
     colorbar_label: str = "",
     title: Optional[str] = None,
 ) -> ChartResult:
+    """Create a clustered heatmap with dendrograms.
+
+    Hierarchically clusters rows and columns before displaying.
+
+    Args:
+        data: 2-D array (genes x samples).
+        row_labels: Gene names for each row.
+        col_labels: Sample names for each column.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions. Auto-computed from data shape.
+        dpi: Output resolution.
+        vmin: Colormap lower bound.
+        vmax: Colormap upper bound.
+        cmap: Colormap name.
+        colorbar_label: Label for the color bar.
+        title: Chart title.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "heatmap_clustered")
     if figsize is None:
@@ -67,6 +88,30 @@ def heatmap_aggregate_chart(
     ylabel: Optional[str] = None,
     title: Optional[str] = None,
 ) -> ChartResult:
+    """Create an aggregate multi-panel heatmap.
+
+    Each panel represents a genomic track (e.g. ChIP-seq signals).
+    A shared color bar and scale bar are added.
+
+    Args:
+        data: A single 2-D array or a list of arrays (one per panel).
+        titles: Panel titles.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions. Auto-computed.
+        dpi: Output resolution.
+        vmin: Colormap lower bound.
+        vmax: Colormap upper bound.
+        cmap: Colormap name.
+        colorbar_label: Label for the shared color bar.
+        scale: Genomic scale bar length.
+        scale_label: Text for the scale bar.
+        ylabel: Y-axis label for the first panel.
+        title: Overall figure title.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "heatmap_multi")
 

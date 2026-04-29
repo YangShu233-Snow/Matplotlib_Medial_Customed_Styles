@@ -77,5 +77,5 @@ Freedman-Diaconis rule via `mmcs._utils._stats.optimal_bins()`.
 
 ## See Also
 
-- Quick API: `mmcs.histogram_chart()` · `mmcs.density_chart()`
-- Renderers: `mmcs.charts.histogram.render()` · `mmcs.charts.density.render()`
+- Quick API: [`mmcs.histogram_chart()`](../api/quick-api.md#mmcs._quick_api._histogram.histogram_chart) · [`mmcs.density_chart()`](../api/quick-api.md#mmcs._quick_api._density.density_chart)
+- Renderers: [`mmcs.charts.histogram.render()`](../api/renderers.md#mmcs.charts._histogram.render) · [`mmcs.charts.density.render()`](../api/renderers.md#mmcs.charts._density.render)

@@ -39,5 +39,5 @@ result = mmcs.profile.bar_scatter(
 ## See Also
 
 - Profile: [Single Column](single-column.md)
-- Quick API: `mmcs.bar_chart()`
-- Renderer: `mmcs.charts.bar.render()`
+- Quick API: [`mmcs.bar_chart()`](../api/quick-api.md#mmcs._quick_api._bar.bar_chart)
+- Renderer: [`mmcs.charts.bar.render()`](../api/renderers.md#mmcs.charts._bar.render)

@@ -92,5 +92,5 @@ Tested with `graphpad_prism`. Uses `bar_clustered_scatter` chart style under the
 
 ## See Also
 
-- Quick API: `mmcs.clustered_columns_chart()`
-- Renderer: `mmcs.charts.clustered_columns.render()`
+- Quick API: [`mmcs.clustered_columns_chart()`](../api/quick-api.md#mmcs._quick_api._clustered_columns.clustered_columns_chart)
+- Renderer: [`mmcs.charts.clustered_columns.render()`](../api/renderers.md#mmcs.charts._clustered_columns.render)

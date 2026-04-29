@@ -92,5 +92,5 @@ result = mmcs.profile.grouped_columns(
 
 ## 相关链接
 
-- Quick API: `mmcs.clustered_columns_chart()`
-- 底层渲染器: `mmcs.charts.clustered_columns.render()`
+- Quick API: [`mmcs.clustered_columns_chart()`](../api/quick-api.md#mmcs._quick_api._clustered_columns.clustered_columns_chart)
+- 底层渲染器: [`mmcs.charts.clustered_columns.render()`](../api/renderers.md#mmcs.charts._clustered_columns.render)

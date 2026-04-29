@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Optional, Sequence, Union
+from typing import Optional, Sequence, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -25,6 +25,28 @@ def clustered_columns_chart(
     ylabel: Optional[str] = None,
     title: Optional[str] = None,
 ) -> ChartResult:
+    """Create a clustered column chart with jittered scatter overlay.
+
+    Each category can have multiple sub-groups. Optionally draws
+    comparison lines with significance stars.
+
+    Args:
+        groups_data: List of ``(category_name, sub_group_names,
+            raw_data_arrays)`` tuples.
+        comparisons: List of ``(cat_idx, sub_a, sub_b, n_stars)``
+            tuples.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        bar_width: Width of each bar.
+        scatter_r: Marker radius for jittered points.
+        ylabel: Y-axis label.
+        title: Chart title.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "bar_clustered_scatter")
     fig, ax = plt.subplots(figsize=figsize, dpi=dpi)

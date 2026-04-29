@@ -31,6 +31,35 @@ def bar_chart(
     ylabel: Optional[str] = None,
     **kwargs: Any,
 ) -> ChartResult:
+    """Create a bar chart.
+
+    High-level API for bar plots. Supports single/multi-group bars with
+    error bars, scatter overlay, and significance stars.
+
+    Args:
+        data: Group means (one per bar), or a DataFrame.
+        groups: Bar labels on the x-axis.
+        errors: Error bar magnitudes (e.g. SEM).
+        x: DataFrame column name for group labels (auto-detected if
+            ``data`` is a DataFrame and ``x``/``y`` are both ``None``).
+        y: DataFrame column name for values.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions in inches. Auto-computed if ``None``.
+        dpi: Output resolution.
+        upper_only: Show only the upper half of error bars.
+        colors: Bar fill colors. Auto-generated from the style's
+            palette if ``None``.
+        stars: Significance stars per bar (0 = none).
+        width: Bar width.
+        edge: Draw bar edge lines.
+        title: Chart title.
+        ylabel: Y-axis label.
+        **kwargs: Passed through to the renderer.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     arr, grp = _resolve_frame(data, x, y)
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "bar")

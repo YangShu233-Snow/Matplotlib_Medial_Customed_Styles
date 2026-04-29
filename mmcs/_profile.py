@@ -22,6 +22,11 @@ from mmcs._quick_api import (
 
 
 class _ProfilePresets:
+    """Zero-configuration chart presets for biomedical use cases.
+
+    Each preset wraps the underlying Quick API with sensible defaults
+    for a common biomedical visualization scenario.
+    """
     @staticmethod
     def grouped_columns(
         groups_data: Sequence[tuple[str, Sequence[str], Sequence[np.ndarray]]],
@@ -33,6 +38,7 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Clustered bar chart with jittered scatter and comparison lines."""
         return clustered_columns_chart(
             groups_data=groups_data,
             comparisons=comparisons,
@@ -54,6 +60,10 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Single-column bar chart for group comparisons.
+
+        Pre-configures ``upper_only=True`` and ``edge=True``.
+        """
         return bar_chart(
             data=values,
             groups=groups,
@@ -78,6 +88,7 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Bar chart with individual data points overlaid."""
         return bar_chart(
             data=values,
             groups=groups,
@@ -101,6 +112,7 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Classic box plot with sample size annotation (``show_n=True``)."""
         return box_chart(
             data=data,
             groups=groups,
@@ -123,6 +135,7 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """KDE violin plot with bandwidth optimization."""
         return violin_chart(
             data=data,
             groups=groups,
@@ -146,6 +159,7 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Overlaid box + violin plot with optional split mode."""
         return box_violin_chart(
             data=data,
             groups=groups,
@@ -168,6 +182,7 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Simple scatter plot without regression."""
         return scatter_chart(
             x=x,
             y=y,
@@ -189,6 +204,7 @@ class _ProfilePresets:
         ylabel: str = "Y Value",
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Scatter plot with linear regression, R\N{SUPERSCRIPT TWO}, and P-value."""
         return regression_chart(
             x=x,
             y=y,
@@ -209,6 +225,7 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Histogram with automatic binning (Freedman-Diaconis)."""
         return histogram_chart(
             data=data,
             style=style,
@@ -229,6 +246,7 @@ class _ProfilePresets:
         ylabel: Optional[str] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """KDE density plot with multi-group support."""
         return density_chart(
             data=data,
             groups=groups,
@@ -249,6 +267,7 @@ class _ProfilePresets:
         save_as: Optional[Union[str, Path]] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Clustered heatmap with dendrograms. Default style: ``deeptools``."""
         return heatmap_chart(
             data=data,
             row_labels=row_labels,
@@ -269,6 +288,7 @@ class _ProfilePresets:
         save_as: Optional[Union[str, Path]] = None,
         title: Optional[str] = None,
     ) -> ChartResult:
+        """Multi-dimensional bubble plot. Default style: ``ggplot``."""
         return bubble_chart(
             categories=categories,
             x_values=x_values,

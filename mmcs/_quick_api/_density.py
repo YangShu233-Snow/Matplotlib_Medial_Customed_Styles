@@ -25,6 +25,26 @@ def density_chart(
     ylabel: Optional[str] = None,
     title: Optional[str] = None,
 ) -> ChartResult:
+    """Create a KDE density plot.
+
+    Supports multiple groups with automatic color assignment.
+
+    Args:
+        data: One array per group.
+        groups: Group labels for the legend.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        bandwidth: KDE bandwidth rule.
+        fill: Fill under the curves.
+        xlabel: X-axis label.
+        ylabel: Y-axis label.
+        title: Chart title.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "density")
     if figsize is None:

@@ -30,6 +30,32 @@ def violin_chart(
     title: Optional[str] = None,
     ylabel: Optional[str] = None,
 ) -> ChartResult:
+    """Create a violin plot.
+
+    High-level API for KDE violin plots with optional split mode
+    for paired comparisons.
+
+    Args:
+        data: One array per group. For split mode, a list of
+            ``(low, high)`` tuples.
+        groups: X-axis labels.
+        style: Style family name.
+        save_as: Path to save the figure.
+        figsize: Figure dimensions.
+        dpi: Output resolution.
+        split: If True, draw split violins for paired comparisons.
+        split_labels: Legend labels for the split halves.
+        bandwidth: KDE bandwidth rule (``"scott"`` or ``"silverman"``).
+        points: Number of KDE grid points.
+        widths: Violin width fraction.
+        cut: KDE grid extension factor.
+        show_n: Annotate sample sizes.
+        title: Chart title.
+        ylabel: Y-axis label.
+
+    Returns:
+        A ``ChartResult`` with the rendered figure.
+    """
     ctxt = StyleContext(style)
     ctxt.apply(plt.rcParams, "violin")
     if figsize is None:

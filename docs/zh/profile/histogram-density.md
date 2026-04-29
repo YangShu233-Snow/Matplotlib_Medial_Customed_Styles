@@ -76,5 +76,5 @@ result = mmcs.profile.density(
 
 ## 相关链接
 
-- Quick API: `mmcs.histogram_chart()` · `mmcs.density_chart()`
-- 底层渲染器: `mmcs.charts.histogram.render()` · `mmcs.charts.density.render()`
+- Quick API: [`mmcs.histogram_chart()`](../api/quick-api.md#mmcs._quick_api._histogram.histogram_chart) · [`mmcs.density_chart()`](../api/quick-api.md#mmcs._quick_api._density.density_chart)
+- 底层渲染器: [`mmcs.charts.histogram.render()`](../api/renderers.md#mmcs.charts._histogram.render) · [`mmcs.charts.density.render()`](../api/renderers.md#mmcs.charts._density.render)

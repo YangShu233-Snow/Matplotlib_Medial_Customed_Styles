@@ -92,5 +92,5 @@ result = mmcs.profile.box_violin(data, groups=["Control", "KO"])
 
 ## 相关链接
 
-- Quick API: `mmcs.box_chart()` · `mmcs.violin_chart()` · `mmcs.box_violin_chart()`
-- 底层渲染器: `mmcs.charts.boxplot.render()` · `mmcs.charts.violin.render()` · `mmcs.charts.boxviolin.render()`
+- Quick API: [`mmcs.box_chart()`](../api/quick-api.md#mmcs._quick_api._box.box_chart) · [`mmcs.violin_chart()`](../api/quick-api.md#mmcs._quick_api._violin.violin_chart) · [`mmcs.box_violin_chart()`](../api/quick-api.md#mmcs._quick_api._boxviolin.box_violin_chart)
+- 底层渲染器: [`mmcs.charts.boxplot.render()`](../api/renderers.md#mmcs.charts._boxplot.render) · [`mmcs.charts.violin.render()`](../api/renderers.md#mmcs.charts._violin.render) · [`mmcs.charts.boxviolin.render()`](../api/renderers.md#mmcs.charts._boxviolin.render)

@@ -74,5 +74,5 @@ for R² and P-value calculation.
 
 ## See Also
 
-- Quick API: `mmcs.scatter_chart()` · `mmcs.regression_chart()`
-- Renderers: `mmcs.charts.scatter.render()` · `mmcs.charts.regression.render()`
+- Quick API: [`mmcs.scatter_chart()`](../api/quick-api.md#mmcs._quick_api._scatter.scatter_chart) · [`mmcs.regression_chart()`](../api/quick-api.md#mmcs._quick_api._regression.regression_chart)
+- Renderers: [`mmcs.charts.scatter.render()`](../api/renderers.md#mmcs.charts._scatter.render) · [`mmcs.charts.regression.render()`](../api/renderers.md#mmcs.charts._regression.render)
