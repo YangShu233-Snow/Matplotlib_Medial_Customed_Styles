@@ -29,7 +29,7 @@ pip install -e ".[dev]"
 
 ### 项目结构
 
-```
+```text
 mmcs/
   __init__.py           # 公开 API 入口
   _registry.py           # 样式注册表
@@ -110,7 +110,7 @@ def render(ax, data, *, groups=None):
 
 推荐使用 Conventional Commits 格式：
 
-```
+```text
 feat: add boxplot renderer with sample size annotation
 fix: correct jitter placement for clustered columns
 docs: update API reference for violin chart

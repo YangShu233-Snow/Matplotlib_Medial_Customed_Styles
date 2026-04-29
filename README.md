@@ -43,6 +43,7 @@
 有点水土不服。
 
 本库旨在：
+
 - 提供**可复用的出版级图表样式**（GraphPad Prism / ggplot2 / DeepTools）
 - 通过 **Profile 预设**一键生成标准图表，零配置开箱即用
 - 通过 **Quick API** 快速自定义，通过 **底层渲染器** 完全控制
@@ -74,7 +75,7 @@ result = mmcs.profile.single_column(
 ### GraphPad Prism 风格
 
 | 预设 | 描述 | API |
-|---|---|---|
+| --- | --- | --- |
 | 单列柱状图 | 经典的双组/多组比较柱状图，支持非对称误差线和显著性标注 | `mmcs.profile.single_column()` |
 | 柱状散点图 | 柱状图叠加个体数据点 | `mmcs.profile.bar_scatter()` |
 | 分簇柱状图 | 分组柱状图叠加抖动散点和组间比较线 | `mmcs.profile.grouped_columns()` |
@@ -88,13 +89,13 @@ result = mmcs.profile.single_column(
 ### R ggplot 风格
 
 | 预设 | 描述 | API |
-|---|---|---|
+| --- | --- | --- |
 | 气泡图 | 多维度气泡图，支持大小和颜色双变量编码 | `mmcs.profile.bubble()` |
 
 ### DeepTools 风格
 
 | 预设 | 描述 | API |
-|---|---|---|
+| --- | --- | --- |
 | 热图 | 带聚类树的基因组学热图 | `mmcs.profile.heatmap()` |
 
 ## 🤖 AI friendly
