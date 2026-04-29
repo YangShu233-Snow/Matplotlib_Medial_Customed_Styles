@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../assets/MMCS_LOGO.png" width="250" alt="MMCS Logo">
+  <img src="assets/MMCS_LOGO.png" width="250" alt="MMCS Logo">
 </p>
 
 # MMCS — Matplotlib Medical Customized Styles

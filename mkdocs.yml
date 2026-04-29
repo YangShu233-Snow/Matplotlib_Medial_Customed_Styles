@@ -1,6 +1,7 @@
 site_name: mmcs
 site_description: Publication-ready matplotlib styles for the medical and biological sciences
-repo_url: https://github.com/anomalyco/Matplotlib_Medical_Customized_Styles
+site_url: https://YangShu233-Snow.github.io/Matplotlib_Medical_Customzied_Styles/
+repo_url: https://github.com/YangShu233-Snow/Matplotlib_Medical_Customzied_Styles
 edit_uri: edit/main/docs/
 
 theme:
