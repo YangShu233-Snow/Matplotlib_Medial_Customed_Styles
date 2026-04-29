@@ -1,28 +1,59 @@
 # Introduction
 
-非常感谢你愿意为本项目贡献代码与创意，Matplotlib_Medial_Customed_Style 项目将因此受益良多。
+非常感谢你愿意为本项目贡献代码与创意，MMCS 项目将因此受益良多。
 
-本项目旨在收集、编写与整理各种适于医学领域论文风格的图表样式，并用 Python 库 `matplotlib` 来实现它们，本项目期望这些已有的脚本代码能够帮助科研工作者免于每次烦扰的样式调整。
+本项目将 GraphPad Prism 简约风格在内的高质量学术图表样式封装为 Python 库 `mmcs`，
+通过 Profile 预设 + Quick API + 底层渲染器 三层架构，实现了样式与图表类型的正交解耦。
 
-无论是脚本、样式调整与建议、甚至是脚本中所使用的示例数据纠错，都欢迎你的补充与分享！！
+无论是新增图表渲染器、调整 .mplstyle 样式参数、改进 Profile 预设，都欢迎你的补充与分享！
 
 ## 提交前准备
 
 ### 开发环境配置
 
-在开始贡献之前，请确保你已经配置好了开发环境。我们使用 `pyproject.toml` 来管理依赖，你可以通过以下命令安装包含测试工具在内的所有开发依赖：
+在开始贡献之前，请确保你已经配置好了开发环境。
 
 ```bash
-git clone https://github.com/YangShu233-Snow/matplotlib_GraphPad_style
-cd matplotlib-medial-customed-style
+git clone https://github.com/YangShu233-Snow/Matplotlib_Medical_Customzied_Styles
+cd Matplotlib_Medical_Customzied_Styles
 pip install -e ".[dev]"
+```
+
+本项目使用 conda 环境进行开发：
+
+```bash
+conda create -n Matplotlib_Medial_Customized_Styles python=3.12
+conda activate Matplotlib_Medial_Customized_Styles
+pip install -e ".[dev]"
+```
+
+### 项目结构
+
+```
+mmcs/
+  __init__.py           # 公开 API 入口
+  _registry.py           # 样式注册表
+  _context.py            # StyleContext — 动态样式注入
+  _profile.py            # Profile 预设（12 个 preset）
+  _quick_api/            # Quick API 编排层（11 个子模块）
+    _bar.py, _box.py, _violin.py, ...
+  charts/                # 底层渲染器（13 个模块）
+    _bar.py, _boxplot.py, _violin.py, ...
+  _utils/                # 工具函数
+    _stats.py, _annotation.py, _export.py
+  styles/                # .mplstyle 文件
+    graphpad_prism/      # 3 个风格家族
+    ggplot/
+    deeptools/
+examples/                # 示例脚本
+docs/                    # 文档站（MkDocs Material）
+tests/                   # 自动化测试
+scripts/                 # 辅助脚本
 ```
 
 ### 运行自动化测试
 
-为了确保项目的稳定性，我们编写了自动化测试与代码检查脚本。**在提交任何 Pull Request 之前，请务必在本地完整运行一遍检查。**
-
-在项目根目录下执行：
+在提交任何 Pull Request 之前，请务必在本地完整运行一遍检查：
 
 ```bash
 ./scripts/check.sh
@@ -30,137 +61,81 @@ pip install -e ".[dev]"
 
 该脚本会依次执行：
 
-1. **ruff** — Python 代码风格检查（必需，未安装则报错）
-2. **rumdl** — Markdown 风格检查（可选，未安装则跳过并提示）
-3. **markdownlint-cli** — Markdown 风格检查（可选，通过 `npx` 运行，未安装则跳过）
-4. **pytest** — 自动化测试（必需，未安装则报错）
+1. **ruff** — Python 代码风格检查（必需）
+2. **pytest** — 自动化测试（必需，130+ 测试覆盖所有模块）
 
-测试主要涵盖以下内容：
+你也可以单独运行测试：
 
-1. **样式合法性测试**：确保所有的 `.mplstyle` 文件都能被 `matplotlib` 正确解析。
-2. **示例脚本运行测试**：模拟运行每个样式下的 `example.py`，确保脚本没有语法错误且能正常生成图表。
+```bash
+pytest -v                          # 全部测试
+pytest tests/test_bar.py           # 指定测试文件
+pytest test/test_examples.py -k bar  # 按关键字过滤
+```
 
-如果你的代码修改导致测试失败或 lint 报错，请务必在修复后再提交。
+### Docstring 规范
 
-> 提示：你也可以跳过可选检查单独运行 `pytest -v`。可选工具（rumdl、markdownlint-cli）仅在你本地已安装时才会生效。
+所有公共 API 须遵循 Google-style docstring，与文档站自动生成保持一致。
+
+```python
+def render(ax, data, *, groups=None):
+    """Short description.
+
+    Args:
+        ax: The matplotlib Axes to draw on.
+        data: Bar heights, one value per bar.
+        groups: X-axis tick labels for each bar.
+
+    Returns:
+        The matplotlib Axes with the chart drawn.
+    """
+```
 
 ### 提交类型
 
 本项目欢迎的提交类型包括：
 
-- 完整的样式，它至少应当包含如下的文件结构：
+- **新增图表渲染器** — 在 `mmcs/charts/` 下新建渲染函数，在 `mmcs/_quick_api/` 下新增 Quick API wrapper
+- **新增风格家族** — 通过 `./scripts/new_style.sh <style_name>` 创建，编写 `.mplstyle` 和 `metadata.json`
+- **修改 .mplstyle 样式参数** — 优化颜色、线宽、字体等默认值
+- **改进 Profile 预设** — 调整 `mmcs/_profile.py` 中的默认参数
+- **Bug 修复** — 修正渲染 bug、测试 bug、文档笔误
 
-    ```text
-    style_name
-        |-- assets
-        |   `-- your_style.mplstyle
-        |-- example.py
-        |-- img
-        |   `-- example.png
-        `-- readme.md
-    ```
+可能会被拒绝的提交类型：
 
-- 对任何已经存在的样式调整，包含修改 `mplstyle` 文件或 `example.py` 代码
-- 对样式示例数据的纠正，如果它不符合特定图标的需求（请原谅我可能缺乏特定领域的专业知识）
-
-可能会被拒绝的提交类型包括：
-
-- 仅有示例图片的提交（如果你需要项目实现或加入某种图表样式，应当在 Issue 中提出）
-- 示例图片、样式、代码和 `readme.md` 描述不统一。
-- 一个样式的提交，但样式耦合在 `example.py`中。（如果你想贡献一个新样式，请尽可能将大多数样式独立到 `mplstyle` 文件中）
+- 没有关联测试或文档的纯代码提交
+- 违反架构设计原则的提交（如将样式逻辑硬编码到渲染器中）
+- 提交信息模糊或缺失
 
 ### 提交规范
 
-根据你想提交类型的不同，请阅读对应类型的规范。
+推荐使用 Conventional Commits 格式：
 
-#### 完整样式贡献
-
-请确保你的 Pull Request 符合以下规范：
-
-- 完整的项目结构：
-
-    ```text
-    style_name
-        |-- assets
-        |   `-- your_style.mplstyle
-        |-- example.py
-        |-- img
-        |   `-- example.png
-        `-- readme.md
-    ```
-
-- 在 Pull Requests 中包含样式名称、样式介绍与例图（这一部分完全可以复制样式中的 `readme.md`）
-- `example.py` 应尽可能遵循项目原有的代码风格：
-
-  ```py
-  # import something
-  import matplotlib.pyplot as plt
-
-  # 最好能有必要类型注释
-  data: np.ndarray
-
-  # 清晰的脚本风格
-  def sub_func(arg_1: int, arg_2: dict):
-      pass
-
-  def main():
-      sub_func()
-
-  if __name__ == '__main__':
-      main()
-  ```
-
-这里有一份你可以参照的模板：
-
-```markdown
-# Single Columns Chart
-
-这是一个用于复刻 GraphPad Prism 经典双组/多组比较柱状图（带非对称误差线和显著性星号）的 matplotlib 示例。
-
-![example picture](url)
 ```
-
-如果你已经写好了 `readme.md`，直接复制它作为 Pull Request 的文本内容提交即可。
-
-### 样式修改与数据纠错
-
-如果你只想修改某些不合适的样式，或纠正示例数据的错误，直接修改对应文件，并重新生成示例图片后，参照如下模板提交 Pull Request:
-
-```markdown
-# The style name you modify
-
-- <此处应当说明先前样式存在的问题>
-- <此处应当说明你修改的具体内容>
-
-![example picture](url)
+feat: add boxplot renderer with sample size annotation
+fix: correct jitter placement for clustered columns
+docs: update API reference for violin chart
+refactor: consolidate KDE bandwidth logic into _stats.py
+chore: bump version to 0.2.0
 ```
 
 ## 贡献流程
 
-### 完整样式贡献
+### 新增功能
 
 1. Fork 本仓库
-2. 新建一个分支（推荐分支名与样式名相同）
-3. 在 `styles/` 目录下新建一个目录，名字与你的样式名相同，并创建完整的样式结构。
+2. 新建功能分支（如 `feat-my-new-chart`）
+3. 完成代码编写并确保 `./scripts/check.sh` 通过
+4. 提交 Pull Request，等待审核
 
-    ```sh
-    # 你现在可以通过项目内预定的脚本创建一个styles
-    ./scripts/new_style.sh <your_style_name>
-    ```
-
-4. 运行 `./scripts/check.sh` 确保所有测试与 lint 通过
-5. 提交 Pull Request，等待审核。
-
-### 样式修改与数据纠错
+### Bug 修复
 
 1. Fork 本仓库
-2. 新建一个分支（推荐分支名与使用 "fix-" + 样式名，例如 "fix-single_columns_chart"）
-3. 在 `styles/` 目录下对应样式中完整您的修改
-4. 运行 `./scripts/check.sh` 确保所有测试与 lint 通过
-5. 提交 Pull Request，等待审核。
+2. 新建修复分支（如 `fix-boxplot-animation`）
+3. 完成修复并确保 `./scripts/check.sh` 通过
+4. 提交 Pull Request，等待审核
 
 ## 致谢
 
-感谢每一位 Matplotlib_Medial_Customed_Style 的贡献者，你的贡献与创意让更多人因此收益！
+感谢每一位 MMCS 的贡献者，你的贡献与创意让更多人因此受益！
 
 Heart~ <3 <3 <3
