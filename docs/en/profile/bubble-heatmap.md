@@ -10,11 +10,11 @@ Presets for multi-dimensional data: `mmcs.profile.bubble()`, `mmcs.profile.heatm
 | `heatmap` | Clustered heatmap with row and column dendrograms. Supports z-score normalization. | `deeptools` |
 
 <figure class="preview-card">
-  <img src="/assets/preview_bubble.png" alt="Bubble" loading="lazy">
+  <img src="../../assets/preview_bubble.png" alt="Bubble" loading="lazy">
   <figcaption>Bubble</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_heatmap.png" alt="Heatmap" loading="lazy">
+  <img src="../../assets/preview_heatmap.png" alt="Heatmap" loading="lazy">
   <figcaption>Heatmap</figcaption>
 </figure>
 

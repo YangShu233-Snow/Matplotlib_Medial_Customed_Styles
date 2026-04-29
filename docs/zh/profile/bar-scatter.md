@@ -7,7 +7,7 @@
     完整参数参考见 [单列柱状图](single-column.md)。
 
 <figure class="preview-card">
-  <img src="/assets/preview_bar_scatter.png" alt="柱状散点图" loading="lazy">
+  <img src="../../assets/preview_bar_scatter.png" alt="柱状散点图" loading="lazy">
   <figcaption>柱状散点图</figcaption>
 </figure>
 

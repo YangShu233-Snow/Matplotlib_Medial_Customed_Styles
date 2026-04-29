@@ -12,7 +12,7 @@
 - 均值和 SEM 自动从原始数据计算
 
 <figure class="preview-card">
-  <img src="/assets/preview_grouped_columns.png" alt="分簇柱状图" loading="lazy">
+  <img src="../../assets/preview_grouped_columns.png" alt="分簇柱状图" loading="lazy">
   <figcaption>分簇柱状图</figcaption>
 </figure>
 

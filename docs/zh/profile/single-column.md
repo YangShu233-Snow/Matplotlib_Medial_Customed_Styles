@@ -11,7 +11,7 @@
 - 可选的在柱子上叠加个体散点
 
 <figure class="preview-card">
-  <img src="/assets/preview_bar.png" alt="单列柱状图" loading="lazy">
+  <img src="../../assets/preview_bar.png" alt="单列柱状图" loading="lazy">
   <figcaption>单列柱状图</figcaption>
 </figure>
 

@@ -10,11 +10,11 @@
 | `density` | KDE 密度分布图，平滑曲线与半透明填充。支持多组叠加。 |
 
 <figure class="preview-card">
-  <img src="/assets/preview_histogram.png" alt="直方图" loading="lazy">
+  <img src="../../assets/preview_histogram.png" alt="直方图" loading="lazy">
   <figcaption>直方图</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_density.png" alt="密度图" loading="lazy">
+  <img src="../../assets/preview_density.png" alt="密度图" loading="lazy">
   <figcaption>密度图</figcaption>
 </figure>
 

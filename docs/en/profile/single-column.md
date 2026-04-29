@@ -5,7 +5,7 @@
 ## Overview
 
 <figure class="preview-card">
-  <img src="/assets/preview_bar.png" alt="Single Column" loading="lazy">
+  <img src="../../assets/preview_bar.png" alt="Single Column" loading="lazy">
   <figcaption>Single Column</figcaption>
 </figure>
 

@@ -10,11 +10,11 @@ XY 数据可视化预设：`mmcs.profile.scatter()`、`mmcs.profile.correlation(
 | `correlation` | 散点图叠加线性回归线，自动标注 R² 和 P 值。 |
 
 <figure class="preview-card">
-  <img src="/assets/preview_scatter.png" alt="散点图" loading="lazy">
+  <img src="../../assets/preview_scatter.png" alt="散点图" loading="lazy">
   <figcaption>散点图</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_correlation.png" alt="相关性分析" loading="lazy">
+  <img src="../../assets/preview_correlation.png" alt="相关性分析" loading="lazy">
   <figcaption>相关性分析</figcaption>
 </figure>
 

@@ -12,7 +12,7 @@ Creates a clustered column chart with:
 - Means and SEM computed automatically from raw data
 
 <figure class="preview-card">
-  <img src="/assets/preview_grouped_columns.png" alt="Grouped Columns" loading="lazy">
+  <img src="../../assets/preview_grouped_columns.png" alt="Grouped Columns" loading="lazy">
   <figcaption>Grouped Columns</figcaption>
 </figure>
 

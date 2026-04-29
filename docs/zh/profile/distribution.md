@@ -13,15 +13,15 @@
 | `box_violin` | 箱线图与小提琴图叠加组合：箱线图精确展示四分位数，小提琴图展示概率密度分布。 |
 
 <figure class="preview-card">
-  <img src="/assets/preview_boxplot.png" alt="箱线图" loading="lazy">
+  <img src="../../assets/preview_boxplot.png" alt="箱线图" loading="lazy">
   <figcaption>箱线图</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_violin.png" alt="小提琴图" loading="lazy">
+  <img src="../../assets/preview_violin.png" alt="小提琴图" loading="lazy">
   <figcaption>小提琴图</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_box_violin.png" alt="箱线+小提琴" loading="lazy">
+  <img src="../../assets/preview_box_violin.png" alt="箱线+小提琴" loading="lazy">
   <figcaption>箱线+小提琴</figcaption>
 </figure>
 

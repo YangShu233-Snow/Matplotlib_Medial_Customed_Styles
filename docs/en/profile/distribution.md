@@ -13,15 +13,15 @@ Three presets for distribution visualization:
 | `box_violin` | Overlaid box + violin: box plot for exact quartiles, violin for probability density. |
 
 <figure class="preview-card">
-  <img src="/assets/preview_boxplot.png" alt="Boxplot" loading="lazy">
+  <img src="../../assets/preview_boxplot.png" alt="Boxplot" loading="lazy">
   <figcaption>Boxplot</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_violin.png" alt="Violin" loading="lazy">
+  <img src="../../assets/preview_violin.png" alt="Violin" loading="lazy">
   <figcaption>Violin</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_box_violin.png" alt="Box-Violin" loading="lazy">
+  <img src="../../assets/preview_box_violin.png" alt="Box-Violin" loading="lazy">
   <figcaption>Box-Violin</figcaption>
 </figure>
 

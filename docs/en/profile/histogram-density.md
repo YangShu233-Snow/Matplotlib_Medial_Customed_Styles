@@ -10,11 +10,11 @@ Presets for univariate distribution: `mmcs.profile.histogram()`, `mmcs.profile.d
 | `density` | KDE density plot with smooth curves and semi-transparent fill. Supports multiple groups. |
 
 <figure class="preview-card">
-  <img src="/assets/preview_histogram.png" alt="Histogram" loading="lazy">
+  <img src="../../assets/preview_histogram.png" alt="Histogram" loading="lazy">
   <figcaption>Histogram</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_density.png" alt="Density" loading="lazy">
+  <img src="../../assets/preview_density.png" alt="Density" loading="lazy">
   <figcaption>Density</figcaption>
 </figure>
 

@@ -10,11 +10,11 @@ Presets for xy data: `mmcs.profile.scatter()`, `mmcs.profile.correlation()`.
 | `correlation` | Scatter plot with linear regression line, R² and P-value annotation. |
 
 <figure class="preview-card">
-  <img src="/assets/preview_scatter.png" alt="Scatter" loading="lazy">
+  <img src="../../assets/preview_scatter.png" alt="Scatter" loading="lazy">
   <figcaption>Scatter</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_correlation.png" alt="Correlation" loading="lazy">
+  <img src="../../assets/preview_correlation.png" alt="Correlation" loading="lazy">
   <figcaption>Correlation</figcaption>
 </figure>
 

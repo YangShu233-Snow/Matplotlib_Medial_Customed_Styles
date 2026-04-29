@@ -46,7 +46,7 @@ result = mmcs.profile.single_column(
 ```
 
 <figure class="preview-card">
-  <img src="/assets/preview_bar.png" alt="Bar Chart" loading="lazy">
+  <img src="../assets/preview_bar.png" alt="Bar Chart" loading="lazy">
   <figcaption>Single Column</figcaption>
 </figure>
 
@@ -81,9 +81,9 @@ Three style families are available. Pass `style=` to any preset or Quick API:
 
 | Style | Best for | Preview |
 |---|---|---|
-| `graphpad_prism` | Bar, box, violin, scatter, histogram, density, regression | ![GraphPad](/assets/preview_bar.png) |
-| `ggplot` | Bubble plots | ![ggplot](/assets/preview_bubble.png) |
-| `deeptools` | Heatmaps, genomic tracks | ![DeepTools](/assets/preview_heatmap.png) |
+| `graphpad_prism` | Bar, box, violin, scatter, histogram, density, regression | ![GraphPad](../assets/preview_bar.png) |
+| `ggplot` | Bubble plots | ![ggplot](../assets/preview_bubble.png) |
+| `deeptools` | Heatmaps, genomic tracks | ![DeepTools](../assets/preview_heatmap.png) |
 
 ```python
 # Switch style freely

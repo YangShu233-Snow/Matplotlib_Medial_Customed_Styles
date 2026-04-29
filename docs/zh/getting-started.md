@@ -47,7 +47,7 @@ result = mmcs.profile.single_column(
 ```
 
 <figure class="preview-card">
-  <img src="/assets/preview_bar.png" alt="柱状图" loading="lazy">
+  <img src="../assets/preview_bar.png" alt="柱状图" loading="lazy">
   <figcaption>单列柱状图</figcaption>
 </figure>
 
@@ -82,9 +82,9 @@ result = mmcs.profile.single_column(
 
 | 风格 | 适用场景 | 预览 |
 |---|---|---|
-| `graphpad_prism` | 柱状图、箱线图、小提琴图、散点图、直方图、密度图、回归图 | ![GraphPad](/assets/preview_bar.png) |
-| `ggplot` | 气泡图 | ![ggplot](/assets/preview_bubble.png) |
-| `deeptools` | 热图、基因组轨道图 | ![DeepTools](/assets/preview_heatmap.png) |
+| `graphpad_prism` | 柱状图、箱线图、小提琴图、散点图、直方图、密度图、回归图 | ![GraphPad](../assets/preview_bar.png) |
+| `ggplot` | 气泡图 | ![ggplot](../assets/preview_bubble.png) |
+| `deeptools` | 热图、基因组轨道图 | ![DeepTools](../assets/preview_heatmap.png) |
 
 ```python
 # 自由切换风格

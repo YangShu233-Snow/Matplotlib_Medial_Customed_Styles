@@ -10,11 +10,11 @@
 | `heatmap` | 带行列聚类树的热图，支持 Z 值标准化。 | `deeptools` |
 
 <figure class="preview-card">
-  <img src="/assets/preview_bubble.png" alt="气泡图" loading="lazy">
+  <img src="../../assets/preview_bubble.png" alt="气泡图" loading="lazy">
   <figcaption>气泡图</figcaption>
 </figure>
 <figure class="preview-card">
-  <img src="/assets/preview_heatmap.png" alt="热图" loading="lazy">
+  <img src="../../assets/preview_heatmap.png" alt="热图" loading="lazy">
   <figcaption>热图</figcaption>
 </figure>
 

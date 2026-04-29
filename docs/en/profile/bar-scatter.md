@@ -7,7 +7,7 @@
     filled. See [Single Column](single-column.md) for full parameter documentation.
 
 <figure class="preview-card">
-  <img src="/assets/preview_bar_scatter.png" alt="Bar with Scatter" loading="lazy">
+  <img src="../../assets/preview_bar_scatter.png" alt="Bar with Scatter" loading="lazy">
   <figcaption>Bar with Scatter</figcaption>
 </figure>
 
